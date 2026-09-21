@@ -28,6 +28,13 @@
     flex-direction: column;
   }
   input[type="file"] {display: none;}
+
+  hgroup {
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    gap: 0.5em;
+  }
 }
 
 @layer layout {

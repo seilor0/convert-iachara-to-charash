@@ -1,4 +1,4 @@
-// import BasicDialog from './components/basic-dialog.js'
+import BasicDialog from './components/basic-dialog.js'
 // import ButtonCssIcon from './components/button-css-icon.js'
 import ButtonTag from './components/button-tag.js';
 import ToggleButton from './components/toggle-button.js'
@@ -11,6 +11,7 @@ const { createApp, ref, computed, watch, onMounted, toRaw } = Vue;
 
 const rootApp = createApp({
   components: {
+    BasicDialog,
     ButtonTag,
     ToggleButton,
   },

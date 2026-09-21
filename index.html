@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,200..400,0..1,0&icon_names=article,info,input,move_item,settings" />
   
   <link rel="stylesheet" href="./css/-base.css" />  
-  <!-- <link rel="stylesheet" href="./css/basic-dialog.css" /> -->
-  <!-- <link rel="stylesheet" href="./css/css-icon.css" /> -->
+  <link rel="stylesheet" href="./css/basic-dialog.css" />
+  <link rel="stylesheet" href="./css/css-icon.css" />
   <!-- <link rel="stylesheet" href="./css/multi-select.css" /> -->
   <link rel="stylesheet" href="./css/tag-label.css" />
   <link rel="stylesheet" href="./css/toggle-button.css" />
@@ -58,6 +58,7 @@
         <section>
           <hgroup>
             <h2>出力</h2>
+            <button command="show-modal" commandfor="save-setting-dialog">save setting</button>
           </hgroup>
           <button class="round-button invert-el invert" 
             @click="saveAsCharashTextFile">
@@ -201,6 +202,13 @@
         PUBLISHED BY KADOKAWA CORPORATION 「クトゥルフ神話TRPG」「新クトゥルフ神話TRPG」
       </p>
     </footer>
+
+    <basic-dialog id="save-setting-dialog">
+      <template #header>保存設定</template>
+      <template #content>
+
+      </template>
+    </basic-dialog>
   </div>
   
   <script type="module" src="./code-vue.js"></script>
