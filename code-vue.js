@@ -1,8 +1,8 @@
-// import BasicDialog from './components/basic-dialog.js'
+import BasicDialog from './components/basic-dialog.js'
 // import ButtonCssIcon from './components/button-css-icon.js'
 import ButtonTag from './components/button-tag.js';
 import ToggleButton from './components/toggle-button.js'
-// import GoogleIcon from './components/google-icon.js';
+import GoogleIcon from './components/google-icon.js';
 
 import { UnitData, UnitData7th } from "./components/class.js";
 
@@ -11,10 +11,19 @@ const { createApp, ref, computed, watch, onMounted, toRaw } = Vue;
 
 const rootApp = createApp({
   components: {
+    BasicDialog,
     ButtonTag,
     ToggleButton,
+    GoogleIcon,
   },
   setup() {
+    const setting = ref({
+      import: {
+        tag: false,
+        skil: false,
+        academic: false
+      }
+    });
     const editUnitIndex = ref(0);
     /** @type UnitData[] */
     const unitDatas = ref([]);
@@ -401,6 +410,25 @@ const rootApp = createApp({
         commonArr.push(`ロスト: ${unitData.setting.isLost}`);
         commonArr.push(`年齢の自動算出: ${unitData.setting.autoCalcAge}`);
 
+        // タグ
+        if (setting.value.import.tag && unitData.profile.get('タグ')) {
+          commonArr.push(`\n【タグ】\n${unitData.profile.get('タグ')}`);
+        }
+
+        // 自由項目
+        if (
+          setting.value.import.skin && unitData.profile.get('肌の色') || 
+          setting.value.import.academic && unitData.profile.get('学位')
+        ) {
+          commonArr.push('\n【自由項目】');
+          if (setting.value.import.skin && unitData.profile.get('肌の色')) {
+            commonArr.push(`肌の色: ${unitData.profile.get('肌の色')}`);
+          }
+          if (setting.value.import.academic && unitData.profile.get('学位')) {
+            commonArr.push(`学位: ${unitData.profile.get('学位')}`);
+          }
+        }
+
         // 共通メモ
         if (unitData.memo.filter(data => !data.asSystem && !data.isSecret).length) {
           commonArr.push('\n【共通メモ】\n');
@@ -644,6 +672,7 @@ ${data.content}
       }
 
       resultArr.push(...commonArr, ...cocArr);
+      console.log(resultArr.join('\n'));
       return resultArr.join('\n');
     }
 
@@ -659,8 +688,8 @@ ${data.content}
 
 
     onMounted(async () => {
-      // const json = await fetch('./data/setting.json').then(res=>res.json());
-      // setting.value = structuredClone(json.setting);
+      const json = await fetch('./data/setting.json').then(res=>res.json());
+      setting.value = structuredClone(json);
       
       const changeLogJson = await fetch('./data/change-log.json').then(res=>res.json());
       document.querySelector('footer table tbody').innerHTML = changeLogJson.reduce((acc, cur) => acc += `<tr><td>${cur.date}</td><td>${cur.version}</td><td>${cur.detail}</td></tr>`, '');
@@ -672,6 +701,7 @@ ${data.content}
 
 
     return {
+      setting,
       editUnitIndex,
       unitDatas,
       editUnit,
