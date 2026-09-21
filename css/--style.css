@@ -1,0 +1,159 @@
+/* ------------------------------ */
+/* サイトごとの個別CSSを記述する場所 */
+/* __utility フォルダでは使わない   */
+/* ------------------------------ */
+
+:root {
+  --basic-font : 'Quicksand','Zen Kaku Gothic New';
+}
+
+
+/* ---------------------- */
+/*        || event        */
+/* ---------------------- */
+@layer state {
+  .is-disabled {
+    opacity: 0.33;
+    pointer-events: none;
+  }
+}
+
+
+
+/* ---------------------- */
+/*     || base, reset     */
+/* ---------------------- */
+@layer base {
+  #root {
+    flex-direction: column;
+  }
+  input[type="file"] {display: none;}
+}
+
+@layer layout {
+  main {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+
+/* ---------------------- */
+/*   imported component   */
+/* ---------------------- */
+@layer component {
+  .toggle-button {
+    --radius: 0.5em;
+    --color: lightslategray;
+  }
+
+  .invert-el {
+    --line-color: var(--light-blue);
+    --active-back-color: var(--blue-gradient);
+  }
+
+  .round-button {
+    padding-inline: 1em;
+  }
+
+  .button-tag {
+    --text-color: lightslategray;
+    font-size: calc(1em - 2px);
+    padding-block: 0px 2px;
+  }
+}
+
+
+
+/* ----------------------- */
+/*  || project component   */
+/* ----------------------- */
+@layer component {
+  .triangle {
+    background-color: hsl(from lightslategray h s l /33%);
+    /* align-self: center; */
+    height: 1rem;
+    aspect-ratio: cos(30deg);
+    clip-path: polygon(0 0,100% 50%,0 100%);
+    @media (max-width:600px) {
+      transform: rotate(90deg);
+    }
+  }
+
+  .setting-wrapper {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .square-baloon-tag {
+    color: darkslategray;
+    border: 1px solid hsl(from currentColor h s l / 0.5);
+    user-select: none;
+    text-align: center;
+    position: relative;
+    border-radius: 4px;
+    padding: 4px 0.75rem;
+    min-width: 12ch;
+    
+    &:has(:checked) {
+      color: white;
+      background: var(--blue-gradient);
+      border-color: transparent;
+      font-weight: 500;
+      box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.2);
+    }
+    &:has(:checked)::after {
+      content: "";
+      position: absolute;
+      right: -0.75rem;
+      background-color: #1089d3;
+      align-self: center;
+      height: 1rem;
+      aspect-ratio: cos(30deg);
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+    }
+  }
+
+  .simple-title{
+    margin-block: 1.25em 0.25em;
+  }
+
+  .memo-details {
+    border-radius: 4px;
+    border: 1px solid slategray;
+    padding: 0.25em 1em;
+    margin-block: 0.25em;
+
+    > summary::marker {
+      color: #b8bcc1;
+    }
+
+    > div {
+        padding-block-start: 0.5em; 
+        margin-block-start: 0.25em;
+        border-block-start: 1px solid slategray;
+    }
+  }
+  .memo-pre {
+    margin-block: 0;
+    font-size: calc(1em - 1px);
+    white-space: pre-line;
+    word-break: break-word;
+  }
+
+  .system-title {
+    display: inline-flex;
+    width: calc(100% - 2ch);
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .table-title-cell {
+    font-weight: 500;
+    color: lightslategray;
+    border-block-end: 1px solid lightslategray;
+  }
+}
