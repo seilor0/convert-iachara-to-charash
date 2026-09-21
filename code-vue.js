@@ -2,7 +2,7 @@ import BasicDialog from './components/basic-dialog.js'
 // import ButtonCssIcon from './components/button-css-icon.js'
 import ButtonTag from './components/button-tag.js';
 import ToggleButton from './components/toggle-button.js'
-// import GoogleIcon from './components/google-icon.js';
+import GoogleIcon from './components/google-icon.js';
 
 import { UnitData, UnitData7th } from "./components/class.js";
 
@@ -14,6 +14,7 @@ const rootApp = createApp({
     BasicDialog,
     ButtonTag,
     ToggleButton,
+    GoogleIcon,
   },
   setup() {
     const setting = ref({
