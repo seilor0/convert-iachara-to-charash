@@ -109,8 +109,8 @@ const rootApp = createApp({
         iacharaText = iacharaText.replace(/【(?:所持品|冒険の装備とその他の所持品|装備と所持品)】.+?(?=(?:\n【|$))/s, '');
         
         // メモ
-        base.memo = iacharaText.match(/(【メモ】.+?)(?:\n【|$)/s)[1].trim();
-        iacharaText = iacharaText.replace(/【メモ】.+?(?=(?:\n【|$))/s, '');
+        base.memo = iacharaText.match(/(【メモ】.+?)$/s)[1].trim();
+        iacharaText = iacharaText.replace(/【メモ】.+?$/s, '');
   
         // 収入と財産
         base.assets = iacharaText.match(/(【収入と財産】.+?)(?:\n【|$)/s)?.[1].trim();
