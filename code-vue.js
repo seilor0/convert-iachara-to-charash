@@ -51,14 +51,14 @@ const rootApp = createApp({
         const textData = unitdata2charash(unitDatas.value[0]);
         const blob = new Blob([textData], {type: 'text/plain'});
         link.href = URL.createObjectURL(blob);
-        link.download = `${unitDatas.value[0].profile.get('名前')}.txt`;
+        link.download = `${unitDatas.value[0].profile.get('名前')}-${unitDatas.value[0].system.coc}.txt`;
 
       } else {
         const zipBlob = await new Promise (resolve => {
           const zip = new JSZip();
           unitDatas.value.forEach(unitData => {
             const textData = unitdata2charash(unitData);
-            zip.file(`${unitData.profile.get('名前')}.txt`, textData);
+            zip.file(`${unitData.profile.get('名前')}-${unitData.system.coc}.txt`, textData);
           });
           resolve(zip.generateAsync({type:'blob'}));
         });
