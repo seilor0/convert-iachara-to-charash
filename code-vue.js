@@ -558,12 +558,14 @@ ${data.content}
 
           // 7th: BLD xx
           // 7th: MOV
-          let calced = 8;
-          if (
-            unitData.status.get('STR') < unitData.status.get('SIZ') &&
-            unitData.status.get('DEX') < unitData.status.get('SIZ')
-          ) calced --;
-          cocArr.push(`MOV補正: ${unitData.elseStatus.get('MOV') - calced}`);
+          if (!unitData.is6th) {
+            let calced = 8;
+            if (
+              unitData.status.get('STR') < unitData.status.get('SIZ') &&
+              unitData.status.get('DEX') < unitData.status.get('SIZ')
+            ) calced --;
+            cocArr.push(`MOV補正: ${unitData.elseStatus.get('MOV') - calced}`);
+          }
         }
 
         // 技能
