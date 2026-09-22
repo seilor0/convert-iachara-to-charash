@@ -544,8 +544,8 @@ ${data.content}
           let initSan = unitData.status.get('POW').sum;
           if (unitData.is6th) initSan *= 5;
           cocArr.push(`\nSAN補正: ${unitData.elseStatus.get('SAN').now - Math.min(initSan, unitData.elseStatus.get('SAN').max)}`);
-          // HP/MP/IDEA/KNOW
-          ['HP', 'MP', 'アイデア', '知識'].forEach(key => {
+          // HP/MP
+          ['HP', 'MP'].forEach(key => {
             if (unitData.isElseStatInit(key)) cocArr.push(`${key}: 0 @自動`);
             else cocArr.push(`${key}: ${unitData.elseStatus.get(key).sum}`);
           });
@@ -555,6 +555,14 @@ ${data.content}
           // DB
           if (unitData.isElseStatInit('ダメージボーナス')) cocArr.push('ダメージボーナス: 0 @自動');
           else cocArr.push(`ダメージボーナス: ${unitData.elseStatus.get('ダメージボーナス')}`);
+          
+          // 6th: IDEA/KNOW
+          if (unitData.is6th) {
+            ['アイデア', '知識'].forEach(key => {
+              if (unitData.isElseStatInit(key)) cocArr.push(`${key}: 0 @自動`);
+              else cocArr.push(`${key}: ${unitData.elseStatus.get(key).sum}`);
+            });
+          }
 
           // 7th: BLD xx
           // 7th: MOV
