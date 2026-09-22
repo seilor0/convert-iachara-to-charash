@@ -30,9 +30,6 @@
 /*     || base, reset     */
 /* ---------------------- */
 @layer base {
-  #root {
-    flex-direction: column;
-  }
   input[type="file"] {display: none;}
 
   hgroup {
@@ -43,6 +40,14 @@
 }
 
 @layer layout {
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  #root {
+    flex-direction: column;
+  }
+
   main {
     flex-direction: column;
     align-items: center;
@@ -74,6 +79,10 @@
     font-size: calc(1em - 2px);
     padding-block: 0px 2px;
   }
+
+  .link {
+    padding: 0 2px;
+  }
 }
 
 
@@ -84,13 +93,9 @@
 @layer component {
   .triangle {
     background-color: hsl(from lightslategray h s l /33%);
-    /* align-self: center; */
     height: 1rem;
     aspect-ratio: cos(30deg);
     clip-path: polygon(0 0,100% 50%,0 100%);
-    @media (max-width:600px) {
-      transform: rotate(90deg);
-    }
   }
 
   .icon-button {
@@ -152,8 +157,27 @@
     }
   }
 
-  .simple-title{
+  .simple-title {
     margin-block: 1.25em 0.25em;
+  }
+
+  .marker-title {
+    margin-block: 1.25em 0.25em;
+    color: white;
+    background: lightslategray;
+    padding: 1px 0.5em;
+    width: fit-content;
+  }
+
+  .info-ul {
+    margin-block: 0;
+    padding-inline-start: 3ch;
+    li {
+      margin-block: 0.25em;
+    }
+    li::marker {
+      color: lightslategray;
+    }
   }
 
   .memo-details {

@@ -27,8 +27,13 @@
       <div style="text-align: center;">
         <h1>いあ→きゃらっしゅ変換所</h1>
         <p>
-          いあきゃらから出力したテキストファイルを、<br>
+          いあきゃらから出力したテキストファイルから、<br>
           キャラッシュ形式に変換するサイトです。
+        </p>
+        <p>
+          ※一部、
+          <button class="link" command="show-modal" commandfor="not-convert-info-dialog">持ち越されない情報</button>
+          があります。
         </p>
       </div>
       <div style="display: flex;gap: 2em;">
@@ -81,7 +86,7 @@
                 v-model="editUnitIndex" 
                 style="display: none;" 
               />
-              {{unitData.profile.get('名前')}}
+              {{unitData.profile.get('名前')}}（{{unitData.system.coc}}）
             </label>
           </div>
 
@@ -226,6 +231,39 @@
             @checked-toggle="val=>setting.import.academic=val"
           ></toggle-button>
         </div>
+      </template>
+    </basic-dialog>
+
+    <basic-dialog id="not-convert-info-dialog" style="max-width: min(30rem, 80dvw);">
+      <template #header>CAUTION</template>
+      <template #content>
+        <p>※以下の情報は、キャラッシュに持ち越されません。</p>
+
+        <p class="marker-title">いあきゃら出力テキストに記載がない</p>
+        <ul class="info-ul">
+          <li>イメージカラー</li>
+          <li>メモ欄のパスワード設定</li>
+          <li>職業ptの算出方法</li>
+          <li>（7版のみ）【魔導書、呪文、アーティファクト】</li>
+          <li>（7版のみ）【遭遇した超自然の存在】</li>
+        </ul>
+
+        <p class="marker-title">
+          記載有無の判別が困難
+        </p>
+        <p style="margin-block: 0 0.25em;font-size: 0.9em;opacity: 0.6;">
+          （情報自体は、各備考欄にまとめる形で残しています）
+        </p>
+        <ul class="info-ul">
+          <li>所持品の単価・個数</li>
+          <li>武器のゲームステータス（ダメージetc.）</li>
+        </ul>
+
+        <p class="marker-title">その他</p>
+        <ul class="info-ul">
+          <li>キャラクター画像・差分</li>
+          <li>【収入と財産】</li>
+        </ul>
       </template>
     </basic-dialog>
   </div>
