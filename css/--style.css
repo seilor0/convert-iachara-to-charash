@@ -52,6 +52,15 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .l-basic-footer table {
+    width: fit-content;
+  }
+  .l-basic-footer table th,td {
+    &:first-child {width: 10ch;}
+    &:nth-child(2){width: 7ch;}
+    &:last-child  {width: 60ch;}
+  }
 }
 
 
