@@ -1,12 +1,11 @@
 import BasicDialog from './components/basic-dialog.js'
-// import ButtonCssIcon from './components/button-css-icon.js'
 import ButtonTag from './components/button-tag.js';
 import ToggleButton from './components/toggle-button.js'
 import GoogleIcon from './components/google-icon.js';
 
 import { UnitData, UnitData7th } from "./components/class.js";
 
-const { createApp, ref, computed, watch, onMounted, toRaw } = Vue;
+const { createApp, ref, computed, onMounted } = Vue;
 
 
 const rootApp = createApp({
@@ -255,7 +254,8 @@ const rootApp = createApp({
             name = [
               ['こぶし（パンチ）', 'こぶし／パンチ'],
               ['(', '（'],
-              [')', '）']
+              [')', '）'],
+              [/^(運転|製作|操縦|母国語|ほかの言語|芸術)（?[:：]?(.*?)）?$/g, '$1（$2）'],
             ].reduce((acc, [key, value]) => acc = acc.replaceAll(key, value), name);
             init     = parseInt(init);
             job      = parseInt(job);
