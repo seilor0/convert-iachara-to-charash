@@ -588,7 +588,6 @@ ${data.content}
           const initSkillsMap = initSkills[unitData.system.coc];
           value.forEach((dic, name) => {
             if (/運転|製作|操縦|母国語|ほかの言語|芸術/.test(name)){
-              if (dic.job * dic.interest * dic.growth * dic.else === 0) return;
               cocArr.push(`| ${name} | 0 @自動 | ${dic.job} | ${dic.interest} | ${dic.growth} | ${dic.else} | ${dic.sum} |`);
 
             } else if (initSkillsMap.has(name)) {
