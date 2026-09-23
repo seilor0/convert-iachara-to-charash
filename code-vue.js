@@ -506,8 +506,10 @@ const rootApp = createApp({
         // セッション記録
         if (unitData.experience.scenarios.length) {
           commonArr.push('\n【セッション記録】');
-          commonArr.push(...unitData.experience.scenarios.map(data => {
-            return `\n［${data.title}］
+          commonArr.push(...unitData.experience.scenarios
+            .toReversed()
+            .map(data => {
+              return `\n［${data.title}］
 開始日:
 終了日:
 GM:
@@ -520,7 +522,7 @@ URLを公開: はい
 【ひとことメモ】
 ${data.content}
 ---`
-          }));
+            }));
         }
       }
 
