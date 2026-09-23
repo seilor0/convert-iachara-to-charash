@@ -224,4 +224,12 @@
     color: lightslategray;
     border-block-end: 1px solid lightslategray;
   }
+
+  .to-scroll {
+    max-height: 50dvh;
+    padding-inline-end: 2ch;
+    overflow-y: auto;
+    scrollbar-color: #cccccc transparent;
+    scrollbar-width: thin;
+  }
 }

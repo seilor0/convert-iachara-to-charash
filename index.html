@@ -77,7 +77,7 @@
       <div v-if="unitDatas.length" style="margin-block-end: 2rem;">
         <h2 style="text-align: center;">調整</h2>
         <div style="display: flex;gap: 2rem;">
-          <div style="display: flex;flex-direction: column;gap: 0.5rem;">
+          <div style="display: flex;flex-direction: column;gap: 0.5rem;" :class="{'to-scroll': unitDatas.length>10}">
             <label v-for="(unitData,index) in unitDatas" class="square-baloon-tag">
               <input 
                 type="radio" 
