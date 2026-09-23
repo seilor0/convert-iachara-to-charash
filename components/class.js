@@ -111,14 +111,14 @@ export class UnitData {
         calced = 
           sum < 13 ? '-1D6' : 
           sum < 17 ? '-1D4' : 
-          sum < 25 ? '0' : 
+          sum < 25 ? '+0' : 
           sum < 33 ? '+1D4' : 
           sum < 41 ? '+1D6' : '+2D6';
       } else {
         calced = 
           sum < 65 ? '-2' : 
           sum < 85 ? '-1' : 
-          sum < 125 ? '0' : 
+          sum < 125 ? '+0' : 
           sum < 165 ? '+1D4' : 
           sum < 205 ? '+1D6' : '+2D6';
       }
