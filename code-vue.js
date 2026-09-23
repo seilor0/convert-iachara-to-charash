@@ -19,6 +19,10 @@ const rootApp = createApp({
   setup() {
     const setting = ref({
       import: {
+        memo: true,
+        weapon: true,
+        item: true,
+        scenarios: true,
         tag: false,
         skil: false,
         academic: false
@@ -429,28 +433,30 @@ const rootApp = createApp({
           }
         }
 
-        // 共通メモ
-        if (unitData.memo.filter(data => !data.asSystem && !data.isSecret).length) {
-          commonArr.push('\n【共通メモ】\n');
-          commonArr.push(...
-            unitData.memo
-            .filter(data => !data.asSystem && !data.isSecret)
-            .map(data => `---\n【${data.title}】\n${data.content}\n---\n`)
-          );
-        }
-        
-        // ネタバレ用メモ（共通用）
-        if (unitData.memo.filter(data => !data.asSystem && data.isSecret).length) {
-          commonArr.push('\n【ネタバレ用メモ】\n');
-          commonArr.push(...
-            unitData.memo
-            .filter(data => !data.asSystem && data.isSecret)
-            .map(data => `---\n【${data.title}】\n${data.content}\n---\n`)
-          );
+        if (setting.value.import.memo) {
+          // 共通メモ
+          if (unitData.memo.filter(data => !data.asSystem && !data.isSecret).length) {
+            commonArr.push('\n【共通メモ】\n');
+            commonArr.push(...
+              unitData.memo
+              .filter(data => !data.asSystem && !data.isSecret)
+              .map(data => `---\n【${data.title}】\n${data.content}\n---\n`)
+            );
+          }
+          
+          // ネタバレ用メモ（共通用）
+          if (unitData.memo.filter(data => !data.asSystem && data.isSecret).length) {
+            commonArr.push('\n【ネタバレ用メモ】\n');
+            commonArr.push(...
+              unitData.memo
+              .filter(data => !data.asSystem && data.isSecret)
+              .map(data => `---\n【${data.title}】\n${data.content}\n---\n`)
+            );
+          }
         }
 
         // 共通の所持品
-        if (unitData.item.filter(item => !item.asSystem).length) {
+        if (setting.value.import.item && unitData.item.filter(item => !item.asSystem).length) {
           commonArr.push(
             '\n【共通の所持品】',
             '| 名前 | 個数 | 備考 |'
@@ -504,7 +510,7 @@ const rootApp = createApp({
         }
         
         // セッション記録
-        if (unitData.experience.scenarios.length) {
+        if (setting.value.import.scenarios && unitData.experience.scenarios.length) {
           commonArr.push('\n【セッション記録】');
           commonArr.push(...unitData.experience.scenarios
             .toReversed()
@@ -602,7 +608,7 @@ ${data.content}
         });
 
         // 武器
-        if (unitData.weapon.length) {
+        if (setting.value.import.weapon && unitData.weapon.length) {
           cocArr.push(
             '\n【武器】',
             '| 名称 | 個数 | 備考 | ダメージ | 故障NO | 射程 | 攻撃回数 | 装弾数 | 耐久力 |',
@@ -611,7 +617,7 @@ ${data.content}
         }
 
         // システム別の所持品
-        if (unitData.item.filter(item => item.asSystem).length) {
+        if (setting.value.import.item && unitData.item.filter(item => item.asSystem).length) {
           cocArr.push(
             '\n【システム別の所持品】',
             '| 名前 | 個数 | 備考 |'
@@ -673,7 +679,7 @@ ${data.content}
         }
 
         // システム別メモ
-        if (unitData.memo.filter(data => data.asSystem).length) {
+        if (setting.value.import.memo && unitData.memo.filter(data => data.asSystem).length) {
           cocArr.push('\n【システム別メモ】\n');
           cocArr.push(...unitData.memo
             .filter(data => data.asSystem)

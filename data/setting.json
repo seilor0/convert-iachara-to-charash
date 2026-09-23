@@ -1,5 +1,9 @@
 {
   "import": {
+    "memo": true,
+    "weapon": true,
+    "item": true,
+    "scenarios": true,
     "tag": false,
     "skil": false,
     "academic": false

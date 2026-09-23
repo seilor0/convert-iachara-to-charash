@@ -212,24 +212,53 @@
     <basic-dialog id="save-setting-dialog">
       <template #header>保存設定</template>
       <template #content>
-        <div class="setting-wrapper" style="font-size: calc(1em - 1px);">
-          タグをインポート
-          <toggle-button
-            :is-checked="setting.import.tag"
-            @checked-toggle="val=>setting.import.tag=val"
-          ></toggle-button>
-          
-          肌の色を自由項目としてインポート
-          <toggle-button
-            :is-checked="setting.import.skin"
-            @checked-toggle="val=>setting.import.skin=val"
-          ></toggle-button>
+        <p>インポート：</p>
+        <div style="display: flex;gap: 2rem;align-items: flex-start;">
+          <div class="setting-wrapper" style="font-size: calc(1em - 1px);">
+            メモ欄
+            <toggle-button
+              :is-checked="setting.import.memo"
+              @checked-toggle="val=>setting.import.memo=val"
+            ></toggle-button>
+            
+            武器
+            <toggle-button
+              :is-checked="setting.import.weapon"
+              @checked-toggle="val=>setting.import.weapon=val"
+            ></toggle-button>
+  
+            所持品
+            <toggle-button
+              :is-checked="setting.import.item"
+              @checked-toggle="val=>setting.import.item=val"
+            ></toggle-button>
 
-          学位を自由項目としてインポート
-          <toggle-button
-            :is-checked="setting.import.academic"
-            @checked-toggle="val=>setting.import.academic=val"
-          ></toggle-button>
+            通過したシナリオ
+            <toggle-button
+              :is-checked="setting.import.scenarios"
+              @checked-toggle="val=>setting.import.scenarios=val"
+            ></toggle-button>
+          </div>
+
+          <div class="setting-wrapper" style="font-size: calc(1em - 1px);">
+            タグ
+            <toggle-button
+              :is-checked="setting.import.tag"
+              @checked-toggle="val=>setting.import.tag=val"
+            ></toggle-button>
+            
+            肌の色（自由項目）
+            <toggle-button
+              :is-checked="setting.import.skin"
+              @checked-toggle="val=>setting.import.skin=val"
+            ></toggle-button>
+  
+            学位（自由項目）
+            <toggle-button
+              :is-checked="setting.import.academic"
+              @checked-toggle="val=>setting.import.academic=val"
+            ></toggle-button>
+          </div>
         </div>
       </template>
     </basic-dialog>
