@@ -695,6 +695,7 @@ ${data.content}
 
 
     function clear () {
+      editUnitIndex.value = 0;
       unitDatas.value.splice(0);
     }
 
