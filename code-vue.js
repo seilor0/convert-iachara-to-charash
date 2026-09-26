@@ -477,35 +477,26 @@ const rootApp = createApp({
           // -- 書物・文献
           // -- 術・呪文
           if (unitData.experience.artifacts.filter(data => !data.asSystem && !/AF|アーティファクト/.test(data.title)).length) {
-            let string = '\n術・呪文: "';
-            string += unitData.experience.artifacts
+            cocArr.push('\n術・呪文:');
+            cocArr.push( ...unitData.experience.artifacts
               .filter(data => !data.asSystem && !/AF|アーティファクト/.test(data.title))
-              .map(data => `${data.title}\n${data.content}`.trim())
-              .join('\n\n');
-            string += '"';
-            cocArr.push(string);
+              .map(data => `---\n【${data.title}】\n${data.content}\n---\n`));
           }
           // -- アーティファクト
           if (unitData.experience.artifacts.filter(data => !data.asSystem && /AF|アーティファクト/.test(data.title)).length) {
-            let string = '\nアーティファクト: "';
-            string += unitData.experience.artifacts
+            cocArr.push('\nアーティファクト:');
+            cocArr.push( ...unitData.experience.artifacts
               .filter(data => !data.asSystem && /AF|アーティファクト/.test(data.title))
-              .map(data => `${data.title}\n${data.content}`.trim())
-              .join('\n\n');
-            string += '"';
-            cocArr.push(string);
+              .map(data => `---\n【${data.title}】\n${data.content}\n---\n`));
           }
           // -- 負傷・傷痕など
           // -- 心の傷
           // -- 遭遇した存在
           if (unitData.experience.creatures.filter(data => !data.asSystem).length) {
-            let string = '\n遭遇した存在: "';
-            string += unitData.experience.creatures
+            cocArr.push('\n遭遇した存在:');
+            cocArr.push( ...unitData.experience.creatures
               .filter(data => !data.asSystem)
-              .map(data => `${data.title}\n${data.content}`.trim())
-              .join('\n\n');
-            string += '"';
-            cocArr.push(string);
+              .map(data => `---\n【${data.title}】\n${data.content}\n---\n`));
           }
         }
         
@@ -638,35 +629,26 @@ ${data.content}
           // -- 書物・文献
           // -- 術・呪文
           if (unitData.experience.artifacts.filter(data => data.asSystem && !/AF|アーティファクト/.test(data.title)).length) {
-            let string = '\n術・呪文: "';
-            string += unitData.experience.artifacts
+            cocArr.push('\n術・呪文:');
+            cocArr.push( ...unitData.experience.artifacts
               .filter(data => data.asSystem && !/AF|アーティファクト/.test(data.title))
-              .map(data => `${data.title}\n${data.content}`.trim())
-              .join('\n\n');
-            string += '"';
-            cocArr.push(string);
+              .map(data => `---\n【${data.title}】\n${data.content}\n---\n`));
           }
           // -- アーティファクト
           if (unitData.experience.artifacts.filter(data => data.asSystem && /AF|アーティファクト/.test(data.title)).length) {
-            let string = '\nアーティファクト: "';
-            string += unitData.experience.artifacts
+            cocArr.push('\nアーティファクト:');
+            cocArr.push( ...unitData.experience.artifacts
               .filter(data => data.asSystem && /AF|アーティファクト/.test(data.title))
-              .map(data => `${data.title}\n${data.content}`.trim())
-              .join('\n\n');
-            string += '"';
-            cocArr.push(string);
+              .map(data => `---\n【${data.title}】\n${data.content}\n---\n`));
           }
           // -- 負傷・傷痕など
           // -- 心の傷
           // -- 遭遇した存在
           if (unitData.experience.creatures.filter(data => data.asSystem).length) {
-            let string = '\n遭遇した存在: "';
-            string += unitData.experience.creatures
+            cocArr.push('\n遭遇した存在:');
+            cocArr.push( ...unitData.experience.creatures
               .filter(data => data.asSystem)
-              .map(data => `${data.title}\n${data.content}`.trim())
-              .join('\n\n');
-            string += '"';
-            cocArr.push(string);
+              .map(data => `---\n【${data.title}】\n${data.content}\n---\n`));
           }
         }
 
